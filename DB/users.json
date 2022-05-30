@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "62951c33198ecfdec595d3cc"
+  },
+  "name": "Test User",
+  "email": "admin@turnkey.com",
+  "contact": 9890958203,
+  "salt": "7b6975f0-e04f-11ec-8f65-21190aa9f9f3",
+  "encryPassword": "716bbef89d1ee634f96f368c2c92b8ec648883672ef696e1f370385edf36b8d0",
+  "createdAt": {
+    "$date": "2022-05-30T19:34:11.921Z"
+  },
+  "updatedAt": {
+    "$date": "2022-05-30T19:34:11.921Z"
+  },
+  "__v": 0
+}]
