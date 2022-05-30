@@ -54,19 +54,34 @@ exports.getImageCount = (req, res) => {
 }
 
 exports.updateImage = (req, res) => {
-    const imageData = req.file.filename;
-    imageSchema.findByIdAndUpdate(
-        { _id: req.image._id },
-        { $set: { data: imageData, name: req.body.name } },
-        { new: true, useFindAndModify: false },
-        (err, iamge) => {
-            if (err) {
-                res.status(400).json({ error: err });
-                return;
+    const imageData = req?.file?.filename;
+    if(imageData == undefined){
+        imageSchema.findByIdAndUpdate(
+            { _id: req.image._id },
+            { $set: { name: req.body.name } },
+            { new: true, useFindAndModify: false },
+            (err, iamge) => {
+                if (err) {
+                    res.status(400).json({ error: err });
+                    return;
+                }
+                res.status(200).json({ success: "Image Updated successfully !" });
             }
-            res.status(200).json({ success: "Image Updated successfully !" });
-        }
-    );
+        );
+    }else{
+        imageSchema.findByIdAndUpdate(
+            { _id: req.image._id },
+            { $set: { data: imageData, name: req.body.name } },
+            { new: true, useFindAndModify: false },
+            (err, iamge) => {
+                if (err) {
+                    res.status(400).json({ error: err });
+                    return;
+                }
+                res.status(200).json({ success: "Image Updated successfully !" });
+            }
+        );
+    }
 }
 
 exports.removeImage = (req, res) => {
