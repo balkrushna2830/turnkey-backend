@@ -54,11 +54,10 @@ exports.getImageCount = (req, res) => {
 }
 
 exports.updateImage = (req, res) => {
-    const imageData = req?.file?.filename;
-    if(imageData == undefined){
+    if(req && req.file && req.file.filename){
         imageSchema.findByIdAndUpdate(
             { _id: req.image._id },
-            { $set: { name: req.body.name } },
+            { $set: { data: req.file.filename, name: req.body.name } },
             { new: true, useFindAndModify: false },
             (err, iamge) => {
                 if (err) {
@@ -71,9 +70,9 @@ exports.updateImage = (req, res) => {
     }else{
         imageSchema.findByIdAndUpdate(
             { _id: req.image._id },
-            { $set: { data: imageData, name: req.body.name } },
+            { $set: { name: req.body.name } },
             { new: true, useFindAndModify: false },
-            (err, iamge) => {
+            (err, image) => {
                 if (err) {
                     res.status(400).json({ error: err });
                     return;
